@@ -1,0 +1,32 @@
+{
+	"schemaVersion": 1,
+	"id": "smoothhud",
+	"version": "${version}",
+	"name": "SmoothHud",
+	"description": "Simple mod to animate the selected hotbar slot highlight when switching slots.",
+	"authors": [
+		"treegfx"
+	],
+	"contact": {
+		"sources": "https://github.com/treegfx/smoothHud"
+	},
+	"icon": "assets/smoothhud/icon.png",
+	"environment": "*",
+	"mixins": [
+		"smoothhud.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.2",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"entrypoints": {
+		"modmenu": [
+			"dev.smoothhud.ModMenu"
+		]
+	},
+	"resources": [
+		"assets.smoothhud"
+	]
+}
