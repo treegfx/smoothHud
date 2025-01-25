@@ -5,6 +5,7 @@ fabric/run
 forge/build/
 forge/run
 common/build/
+src/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
