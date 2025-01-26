@@ -13,6 +13,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'multiloader-project'
+rootProject.name = 'smoothHud'
 
 include 'common', 'fabric', 'forge'

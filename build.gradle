@@ -23,7 +23,7 @@ subprojects {
         maven { url = 'https://maven.terraformersmc.com/releases' }
     }
 
-    if (project.name != 'common') {
+    if (project.name == 'forge' || project.name == "fabric") {
         tasks.withType(ProcessResources) {
             dependsOn(':common:jar')
             from project(':common').sourceSets.main.output
