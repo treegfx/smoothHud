@@ -88,6 +88,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.SliderWidget;
+import net.minecraft.client.gui.widget.TextWidget;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -123,19 +124,19 @@ public class ConfigScreen extends Screen {
         );
 
         this.addDrawableChild(
-                ButtonWidget.builder(Text.of("Cancel"), (button) -> {
-                            assert this.client != null;
-                            this.client.setScreen(parent);
-                }).dimensions(this.width / 2 - 100, this.height / 4 + 72, 200, 20).build()
-        );
-
-        this.addDrawableChild(
-                ButtonWidget.builder(Text.of("Save & Quit"), (button) -> {
+                ButtonWidget.builder(Text.of("Save & Exit"), (button) -> {
                             assert this.client != null;
                             ConfigManager.getConfig().speed = tempSpeed;
                             ConfigManager.saveConfig();
                             this.client.setScreen(parent);
                 }).dimensions(this.width / 2 - 100, this.height / 4 + 48, 200, 20).build()
+        );
+
+        this.addDrawableChild(
+                ButtonWidget.builder(Text.of("Cancel"), (button) -> {
+                    assert this.client != null;
+                    this.client.setScreen(parent);
+                }).dimensions(this.width / 2 - 100, this.height / 4 + 72, 200, 20).build()
         );
     }
 
@@ -161,28 +162,6 @@ public class ConfigScreen extends Screen {
         return true;
     }
 
-    /*@Override
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        super.render(context, mouseX, mouseY, delta);
-
-
-        float targetX = selectedSlot * 20;
-
-        long currentTime = System.currentTimeMillis();
-        float deltaTime = (currentTime - lastTickTime) / 1000f;
-        lastTickTime = currentTime;
-
-        if (Math.abs(targetX - currentX) > 0.1f) {
-            float diff = targetX - currentX;
-            currentX += diff * deltaTime * tempSpeed;
-        }
-
-        int hotbarX = this.width / 2 - 91, hotbarY = this.height / 4 + 100;
-        context.drawTexture(RenderLayer::getGuiTextured, Identifier.of("minecraft", "textures/gui/sprites/hud/hotbar.png"), hotbarX, hotbarY, 0, 0, 182, 22, 182, 22, 182, 22);
-
-        context.drawGuiTexture(RenderLayer::getGuiTextured, Identifier.ofVanilla("hud/hotbar_selection"), hotbarX + (int)currentX, hotbarY - 1, 24, 23);
-
-    }*/
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
@@ -216,7 +195,25 @@ public class ConfigScreen extends Screen {
                 hotbarX + roundedCurrentX, hotbarY - 1,
                 24, 23
         );
+
+        long time = System.currentTimeMillis();
+        String message = "Scroll or press hotkeys to preview";
+        float scale = 0.75f;
+
+        // Adjust x position to compensate for scale
+        int textWidth = this.textRenderer.getWidth(message);
+        int x = (int)((this.width - textWidth * scale) / 2);
+        int y = hotbarY + 25;
+
+        int color = ((time / 300) % 2 == 0) ? 0x555555 : 0x666666;
+
+        context.getMatrices().push();
+
+        context.getMatrices().translate(x, y, 0);
+        context.getMatrices().scale(scale, scale, 1f);
+
+        context.drawText(this.textRenderer, message, 0, 0, color, true);
+
+        context.getMatrices().pop();
     }
-
-
 }
