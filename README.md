@@ -1,8 +1,7 @@
-> note: this code is really outdated at the moment! updating tomorrow
-> if you want releases sooner, download them from modrinth: https://modrinth.com/mod/smooth-hud
+> note: needs refactoring of lerp functionality
 
 ## smoothHud
-simple fabric mod to animate the selected hotbar slot highlight when switching slots.
+simple fabric mod that animates the selected hotbar slot highlight when switching slots.
 
 ### preview:
 ![animated hotbar slot switching](https://wsrv.nl/?url=https%3A%2F%2Fcdn.79183.org%2Fanimated_hotbar.gif&n=-1)

@@ -1,11 +1,14 @@
 {
 	"required": true,
 	"package": "dev.smoothhud.mixin",
-	"compatibilityLevel": "JAVA_21",
+	"compatibilityLevel": "JAVA_25",
+	"mixins": [
+		"InGameHudMixin"
+	],
 	"injectors": {
 		"defaultRequire": 1
 	},
-	"client": [
-		"InGameHudMixin"
-	]
+	"overwrites": {
+		"requireAnnotations": true
+	}
 }

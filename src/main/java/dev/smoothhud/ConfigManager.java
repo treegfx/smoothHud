@@ -29,7 +29,7 @@ public class ConfigManager {
                 config = GSON.fromJson(reader, Config.class);
                 return;
             } catch (IOException e) {
-                LOGGER.error(e.toString());
+                LOGGER.error("failed to load config file with exception: \n    {}", e.toString());
             }
         }
         config = new Config();
@@ -40,7 +40,7 @@ public class ConfigManager {
         try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
             GSON.toJson(config, writer);
         } catch (IOException e) {
-            LOGGER.error(e.toString());
+            LOGGER.error("failed to save config file with exception: \n    {}", e.toString());
         }
     }
 }
