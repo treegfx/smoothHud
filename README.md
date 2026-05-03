@@ -1,4 +1,4 @@
-> note: needs refactoring of lerp functionality
+> note: needs refactoring at some point
 
 ## smoothHud
 simple fabric mod that animates the selected hotbar slot highlight when switching slots.
